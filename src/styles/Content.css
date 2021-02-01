@@ -1,0 +1,8 @@
+.content {
+	background-color: #f5f0e1;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+	height: 300px;
+	padding-top: 30px;
+}

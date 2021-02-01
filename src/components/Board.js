@@ -38,7 +38,6 @@ class Board extends React.Component{
             <Container maxWidth="lg">
                 <Menu/>
                 <Content>
-                   <Input></Input>
                 </Content>
                 {/* <Greetings text = {this.state.text}/>
                 <MyButton handler ={this.handler}/> */}
