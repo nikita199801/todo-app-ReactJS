@@ -12,7 +12,7 @@ class Head extends React.Component {
             isShow: false
         })
 
-        this.onShowHandler = this.onShowHandler.bind(this)
+        // this.onShowHandler = this.onShowHandler.bind(this)
     }
 
     showInput(){
@@ -27,7 +27,7 @@ class Head extends React.Component {
         })
     }
 
-    onShowHandler(){
+    onShowHandler = ()=>{
         if (this.state.isShow){
             this.hideInput()
         } else

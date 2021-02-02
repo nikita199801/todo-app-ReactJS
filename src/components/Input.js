@@ -11,11 +11,10 @@ class Input extends React.Component {
             return (
                 <input type="text"></input>
             )
-        } else {
-            return(
-                <p>{"Press button ------->"}</p>
-            )
         }
+        return(
+            <p>{"Press button ------->"}</p>
+        )
     }
 }
 

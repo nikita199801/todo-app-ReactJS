@@ -18,7 +18,7 @@ class Board extends React.Component{
         this.handler = this.handler.bind(this)
     }
 
-    handler(){ 
+    handler = () =>{ 
         if (this.state.isPressed){
             this.setState({
                 isPressed : false,
