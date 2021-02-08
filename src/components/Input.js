@@ -1,11 +1,19 @@
 import React from "react"
 import { TextField } from '@material-ui/core'
-class Input extends React.Component { 
+import { Fade } from '@material-ui/core'
+
+import "../styles/Input.css"
+
+class Input extends React.Component {
+    
     render(){
+        if (this.props.isShow){
+            return (
+                <input type="text"></input>
+            )
+        }
         return(
-            <div>
-                <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-            </div>
+            <p>{"Press button ------->"}</p>
         )
     }
 }

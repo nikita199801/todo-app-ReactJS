@@ -18,7 +18,7 @@ class Board extends React.Component{
         this.handler = this.handler.bind(this)
     }
 
-    handler(){ 
+    handler = () =>{ 
         if (this.state.isPressed){
             this.setState({
                 isPressed : false,
@@ -38,7 +38,6 @@ class Board extends React.Component{
             <Container maxWidth="lg">
                 <Menu/>
                 <Content>
-                   <Input></Input>
                 </Content>
                 {/* <Greetings text = {this.state.text}/>
                 <MyButton handler ={this.handler}/> */}
