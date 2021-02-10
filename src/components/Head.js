@@ -9,39 +9,27 @@ class Head extends React.Component {
     constructor(props){
         super(props)
         this.state=({
-            isShow: false
-        })
-
-        // this.onShowHandler = this.onShowHandler.bind(this)
-    }
-
-    showInput(){
-        this.setState({
-            isShow: true
-        })
-    }
-
-    hideInput(){
-        this.setState({
-            isShow: false
+            isVisble: false
         })
     }
 
     onShowHandler = ()=>{
-        if (this.state.isShow){
-            this.hideInput()
+        if (this.state.isVisble){
+            this.setState({
+                isVisble: false,
+            })
         } else
-            this.showInput()
+        this.setState({
+            isVisble: true
+        })
     }
 
     render(){
         return(
-            <div className="head">
-                <CSSTransition>
-                <Input isShow={this.state.isShow}/>
-                </CSSTransition>
+            <form className="head">
+                <Input isVisble={this.state.isVisble}/>
                 <MyButton action={this.onShowHandler}/>
-            </div>
+            </form>
         )
     }
 }

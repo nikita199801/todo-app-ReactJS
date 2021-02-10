@@ -22,9 +22,22 @@
 	box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+.plate-text-content-done {
+	text-decoration: line-through;
+}
+
 .control-section {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-evenly;
+}
+
+.text-transition-enter {
+	text-decoration: none;
+}
+
+.text-transition-enter-active {
+	text-decoration: line-through;
+	transition: text-decoration 200ms;
 }

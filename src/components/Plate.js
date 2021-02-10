@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react"
+import {CSSTransition} from 'react-transition-group';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import "../styles/Plate.css"
@@ -7,9 +8,11 @@ export default function Plate(props){
     const [canDelete, onDelete] = useState(!props.isDone)
     return(
         <div className="plate">
-            <span className="plate-text-content">
-                {props.content}
-            </span>
+            {(canDelete) ? 
+            <CSSTransition in={canDelete} timeout={200} classNames="text-transition">
+                <span className="plate-text-content">{props.content}</span>
+            </CSSTransition>
+            : <span className="plate-text-content plate-text-content-done">{props.content}</span>}
             <span className="control-section">
                 {/* <input type="checkbox" checked = {props.isDone}></input> */}
                 <Checkbox name="Done" defaultChecked = {props.isDone} onChange={()=>{onDelete(!canDelete)}}/>
