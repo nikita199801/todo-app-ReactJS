@@ -39,8 +39,6 @@ class Board extends React.Component{
                 <Menu/>
                 <Content>
                 </Content>
-                {/* <Greetings text = {this.state.text}/>
-                <MyButton handler ={this.handler}/> */}
             </Container>
         )
     }
