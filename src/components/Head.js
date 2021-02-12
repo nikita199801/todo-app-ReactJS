@@ -2,6 +2,7 @@ import React from "react"
 import Input from "./Input";
 import MyButton from "./MyButton"
 import { CSSTransition } from "react-transition-group";
+const http = require('http')
 
 import "../styles/Head.css"
 
@@ -9,26 +10,22 @@ class Head extends React.Component {
     constructor(props){
         super(props)
         this.state=({
-            isVisble: false
+            isVisble: false,
+            todoString: ""
         })
     }
 
-    onShowHandler = ()=>{
-        if (this.state.isVisble){
-            this.setState({
-                isVisble: false,
-            })
-        } else
+    inputHandler = (data) => {
         this.setState({
-            isVisble: true
-        })
+            todoString: data
+         })
     }
 
     render(){
         return(
             <form className="head">
-                <Input isVisble={this.state.isVisble}/>
-                <MyButton action={this.onShowHandler}/>
+                <Input isVisble={this.state.isVisble} changeHandler = {this.inputHandler}/>
+                <MyButton action={()=>{this.props.newTodoHandler(this.state.todoString)}}/>
             </form>
         )
     }

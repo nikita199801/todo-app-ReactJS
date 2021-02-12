@@ -10,10 +10,11 @@ class Input extends React.Component {
         super(props)
         this.state ={
             isActive: false,
+            inputValue: ''
         }
     }
 
-    onInputHandler = () => {
+    animateInputField = () => {
         if (this.state.isActive){
             this.setState({
                 isActive: false
@@ -24,11 +25,26 @@ class Input extends React.Component {
             })
         } 
     }
+
+
+    inputHandler = (event) => {
+        this.setState({
+            inputValue: event.target.value
+        })
+    }
     
     render(){
             return (
                 <CSSTransition in={this.state.isActive} timeout={500} classNames="input-animation">
-                    <input type="text" onFocus={this.onInputHandler} onBlur={this.onInputHandler} placeholder={(this.state.isActive) ? "Enter your TODO" : "Click here"}></input>
+                    <input 
+                    type="text" 
+                    onFocus={this.animateInputField} 
+                    onBlur={()=>{
+                        this.animateInputField()
+                        this.props.changeHandler(this.state.inputValue)
+                    }}
+                    onChange={this.inputHandler} 
+                    placeholder={(this.state.isActive) ? "Enter your TODO" : "Click here"}></input>
                 </CSSTransition>
             )
     }
