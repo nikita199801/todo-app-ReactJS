@@ -38,11 +38,9 @@ class Input extends React.Component {
                 <CSSTransition in={this.state.isActive} timeout={500} classNames="input-animation">
                     <input 
                     type="text" 
-                    onFocus={this.animateInputField} 
-                    onBlur={()=>{
-                        this.animateInputField()
-                        this.props.changeHandler(this.state.inputValue)
-                    }}
+                    onMouseOver={this.animateInputField} 
+                    onMouseOut={()=>{this.animateInputField()}}
+                    onBlur={()=>{this.props.changeHandler(this.state.inputValue)}}
                     onChange={this.inputHandler} 
                     placeholder={(this.state.isActive) ? "Enter your TODO" : "Click here"}></input>
                 </CSSTransition>

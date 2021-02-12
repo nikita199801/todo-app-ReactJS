@@ -7,11 +7,7 @@ class Menu extends React.Component {
     render(){
         return(
             <div className="menu">
-            <Grid container direction="row" justify="center" alignItems="center">
-                <Grid container item lg spacing={3} justify="center" alignItems="center">
-                    <p>MY-TODO-APP</p>
-                </Grid>
-            </Grid>
+                <p>MY-TODO-APP</p>
             </div>
         )
     }

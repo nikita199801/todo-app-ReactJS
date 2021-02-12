@@ -14,10 +14,9 @@ export default function Plate(props){
             </CSSTransition>
             : <span className="plate-text-content plate-text-content-done">{props.content}</span>}
             <span className="control-section">
-                {/* <input type="checkbox" checked = {props.isDone}></input> */}
                 <Checkbox name="Done" defaultChecked = {props.isDone} onChange={()=>{onDelete(!canDelete)}}/>
                 <button disabled = {canDelete}>Delete</button>
-                <button>Edit</button>
+                <button onClick={props.openDialog}>Edit</button>
             </span>
         </div>       
     )
