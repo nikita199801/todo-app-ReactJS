@@ -37,6 +37,7 @@ class Input extends React.Component {
             return (
                 <CSSTransition in={this.state.isActive} timeout={500} classNames="input-animation">
                     <input 
+                    className = "main-input"
                     type="text" 
                     onMouseOver={this.animateInputField} 
                     onMouseOut={()=>{this.animateInputField()}}
