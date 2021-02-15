@@ -4,8 +4,9 @@ import MyButton from "./MyButton"
 import { CSSTransition } from "react-transition-group";
 import todos from "../todos.json";
 import "../styles/Head.css"
-const http = require('http')
 
+const http = require('http')
+const axios = require('axios')
 
 class Head extends React.Component {
     constructor(props){
@@ -30,22 +31,16 @@ class Head extends React.Component {
                 completed: false
             }
             
-            let post_options = {
-                host: '127.0.0.1',
-                port: '5000',
-                path: '/new',
-                method: 'POST',
-                // headers: {
-                //     'Content-Type': 'application/json;charset=UTF-8',
-                //     'Access-Control-Allow-Origin': 'http://localhost:3000'
-                //     // 'Content-Length': Buffer.byteLength(newTodo)
-                // }
-            };
-            
-            const req = http.request(post_options, (req, res)=>{
+            axios({
+                method: 'post',
+                url :'http://localhost:5000/new',
+                data: newTodo,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Length': Buffer.byteLength(newTodo)
+                }
             })
-            req.write(JSON.stringify(newTodo))
-            req.end()
+            .then(res => console.log(res))
         }
     }
 

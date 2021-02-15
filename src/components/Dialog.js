@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/Dialog.css"
 const http = require('http')
+const axios = require('axios')
 export default class Dialog extends React.Component{
   constructor(props){
     super(props)
@@ -17,20 +18,18 @@ export default class Dialog extends React.Component{
 
   saveChanges = (dataToEdit, newData) => {
     dataToEdit.newTitle = newData
-    let post_options = {
-      host: '127.0.0.1',
-      port: '5000',
-      path: '/edit',
-      method: 'POST',
-      // headers: {
-      //     'Content-Type': 'application/x-www-form-urlencoded'
-      // }
-    };
-    const req = http.request(post_options,(req, res) => {
-    })
-    req.write(JSON.stringify(dataToEdit))
-    req.end()
-    console.log(this.state.inputData)
+
+    axios({
+      method: 'post',
+      url :'http://localhost:5000/edit',
+      data: dataToEdit,
+      headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Length': Buffer.byteLength(dataToEdit)
+      }
+  })
+  .then(res => console.log(res))
+  return false
   }
 
   render(){

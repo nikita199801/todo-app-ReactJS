@@ -10,6 +10,7 @@ http.createServer((req, res)=>{
                     let todos = require("../src/todos.json")
                     res.statusCode = 200
                     res.statusMessage = 'DATA_RECIVED'
+                    res.setHeader("Access-Control-Allow-Origin", '*')
                     todos.push(JSON.parse(data))
                     // console.log(todos)
                     fs.writeFileSync('../src/todos.json', JSON.stringify(todos), err =>{
@@ -18,13 +19,14 @@ http.createServer((req, res)=>{
                     res.end()
                 })
             }
-
+ 
             if (req.url === '/edit') {
                 req.on('data', (data)=>{
                     dataToEdit = JSON.parse(data)
                     let todos = require("../src/todos.json")
                     res.statusCode = 200
                     res.statusMessage = 'DATA_RECIVED'
+                    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
                     todos.forEach(todo => {
                         if (todo.id === dataToEdit.id){
                             todo.title = dataToEdit.newTitle
@@ -45,23 +47,28 @@ http.createServer((req, res)=>{
                     let todos = require("../src/todos.json")
                     res.statusCode = 200
                     res.statusMessage = 'DATA_RECIVED'
+                    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
                     editted  = []
-                    todos.map(todo => {
-                        if (todo.id !== dataToDelete.id ){
+                    todos.forEach(todo => {
+                        if(dataToDelete.id !== todo.id){
                             editted.push(todo)
                         }
                     })
-                    // let indexOfTodoToDelete = todos.indexOf(dataToDelete)
-                    // console.log(indexOfTodoToDelete)
-                    // editted = todos.slice(0, indexOfTodoToDelete - 1).concat(todos.slice(indexOfTodoToDelete + 1))
-                    // console.log(editted)
-                    fs.truncate('../src/todos.json', 0, ()=>{
-                        fs.writeFile('../src/todos.json', JSON.stringify(editted), err =>{
-                            console.log(err)
-                        })
+                    fs.writeFile('../src/todos.json', JSON.stringify(editted), err =>{
+                        console.log("DATA: ",editted)
                     })
                     res.end()
-                })
+                }) 
+            }
+        }
+        case "GET":{
+            if (req.url === '/') {
+                res.statusCode = 200
+                res.statusMessage = 'DATA_SEND'
+                res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
+                todos = require('../src/todos.json')
+                res.write(JSON.stringify(todos))
+                res.end()
             }
         }
     }
