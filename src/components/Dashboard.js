@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react"
 import Plate from "./Plate"
-import data from "../todos.json";
 import Checkbox from '@material-ui/core/Checkbox';
 export default class Dashboard extends React.Component{ 
     constructor(props){
