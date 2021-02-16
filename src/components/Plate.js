@@ -12,7 +12,6 @@ export default function Plate(props){
     const [isShow, onDialogShow] = useState(false)
 
     function deleteTodo(dataToDelete){
-        console.log(dataToDelete)
         axios({
             method: 'post',
             url :'http://localhost:5000/delete',

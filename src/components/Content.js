@@ -21,6 +21,14 @@ class Content extends React.Component {
             })
         })
     }
+    componentDidMount(){
+        axios.get('http://localhost:5000')
+        .then(res => {
+            this.setState({
+                data: res.data
+            })
+        })
+    }
 
     render(){
         return(
