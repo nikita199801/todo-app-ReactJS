@@ -26,11 +26,10 @@ class Head extends React.Component {
     addNewTodo = (data) => {
         if (data !== ''){
             let newTodo = {
-                id: todos[todos.length - 1].id + 1,
+                id: '',
                 title: data,
                 completed: false
             }
-            
             axios({
                 method: 'post',
                 url :'http://localhost:5000/new',
@@ -40,7 +39,6 @@ class Head extends React.Component {
                     'Content-Length': Buffer.byteLength(newTodo)
                 }
             })
-            .then(res => console.log(res))
         }
     }
 

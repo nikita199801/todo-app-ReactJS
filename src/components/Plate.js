@@ -6,10 +6,9 @@ import "../styles/Plate.css"
 import Dialog from "./Dialog"
 import MyButton from "./MyButton"
 import "../styles/Dashboard.css"
-const http = require('http')
 const axios = require('axios')
 export default function Plate(props){
-    const [canDelete, onDelete] = useState(!props.isDone)
+    const [canDelete, onDeleteHandeler] = useState(!props.isDone)
     const [isShow, onDialogShow] = useState(false)
 
     function deleteTodo(dataToDelete){
@@ -24,6 +23,7 @@ export default function Plate(props){
         })
         .then(res => console.log(res))
       }
+
     return(
         <div className="plate">
             {(canDelete) ? 
@@ -32,7 +32,7 @@ export default function Plate(props){
             </CSSTransition>
             : <span className="plate-text-content plate-text-content-done">{props.todoData.title} ID::: {props.todoData.id}</span>}
             <span className="control-section">
-                <Checkbox name="Done" defaultChecked = {props.isDone} onChange={()=>{onDelete(!canDelete)}}/>
+                <Checkbox name="Done" defaultChecked = {props.isDone} onChange={()=>{onDeleteHandeler(!canDelete)}}/>
                 <button disabled = {canDelete} onClick = {() => {deleteTodo(props.todoData)}}>Delete</button>
                 <button onClick={()=>{onDialogShow(true)}}>Edit</button>
                 {(isShow) ? <Dialog 
