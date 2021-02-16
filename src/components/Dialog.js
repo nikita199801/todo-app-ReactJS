@@ -48,6 +48,7 @@ export default class Dialog extends React.Component{
           <button onClick = {()=>{
             if (this.state.inputData !== ""){
               this.saveChanges(this.props.thisTodo, this.state.inputData)
+              this.props.updateContent()
               this.props.onClose()
             } else{
               // MODIFY LATER 

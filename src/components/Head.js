@@ -46,7 +46,7 @@ class Head extends React.Component {
         return(
             <form className="head">
                 <Input isVisble={this.state.isVisble} changeHandler = {this.inputHandler}/>
-                <MyButton action={()=>{this.addNewTodo(this.state.todoString)}}/>
+                <MyButton action={()=>{this.addNewTodo(this.state.todoString)}} updateContent = {this.props.updateContent}/>
             </form>
         )
     }

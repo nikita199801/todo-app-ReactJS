@@ -43,7 +43,7 @@ class Input extends React.Component {
                     onMouseOut={()=>{this.animateInputField()}}
                     onBlur={()=>{this.props.changeHandler(this.state.inputValue)}}
                     onChange={this.inputHandler} 
-                    placeholder={(this.state.isActive) ? "Enter your TODO" : "Click here"}></input>
+                    placeholder={(this.state.isActive) ? "Enter your TODO" : "Hover here"}></input>
                 </CSSTransition>
             )
     }

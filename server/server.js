@@ -29,7 +29,10 @@ http.createServer((req, res)=>{
                     todos = JSON.parse(fs.readFileSync('../src/todos.json'))
                     todos.forEach(todo => {
                         if (todo.id === dataToEdit.id){
-                            todo.title = dataToEdit.newTitle
+                            if(dataToEdit.newTitle){
+                                todo.title = dataToEdit.newTitle
+                            }
+                            todo.completed = dataToEdit.completed
                         }
                     });
                     fs.writeFile('../src/todos.json', JSON.stringify(todos, null, 2), err =>{

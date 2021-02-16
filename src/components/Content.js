@@ -13,6 +13,19 @@ class Content extends React.Component {
             // data: require("../todos.json")
         })
     } 
+    
+    update = () =>{
+        axios.get('http://localhost:5000')
+        .then(res => {
+            this.forceUpdate(()=>{
+                console.log()
+            })
+            this.setState({
+                data: res.data
+            })
+        })
+    }
+
     componentWillMount(){
         axios.get('http://localhost:5000')
         .then(res => {
@@ -21,20 +34,20 @@ class Content extends React.Component {
             })
         })
     }
-    componentDidMount(){
-        axios.get('http://localhost:5000')
-        .then(res => {
-            this.setState({
-                data: res.data
-            })
-        })
+
+    
+    
+    shouldComponentUpdate(nextProps, nextState){
+        if(!(this.state.data === nextState.data)){
+            return true
+        }
     }
 
     render(){
         return(
             <div className="content">
-                <Head/>
-                <Dashboard todos={this.state.data}/>
+                <Head updateContent = {this.update}/>
+                <Dashboard todos={this.state.data} updateContent = {this.update}/>
             </div>
         )
     }

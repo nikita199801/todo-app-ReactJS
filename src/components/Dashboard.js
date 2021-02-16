@@ -13,7 +13,7 @@ export default class Dashboard extends React.Component{
     render(){
         const todos =this.props.todos.map((todo) =>{
             return (
-                <Plate todoData={todo} isDone={todo.completed} key={todo.id} openDialog = {this.onDialogShow}/>
+                <Plate todoData={todo} isDone={todo.completed} key={todo.id} openDialog = {this.onDialogShow} updateContent={this.props.updateContent}/>
             )
         })
         return (
