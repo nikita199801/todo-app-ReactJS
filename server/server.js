@@ -1,7 +1,7 @@
 const http = require('http')
 const fs = require('fs')
 
-http.createServer((req, res)=>{
+http.createServer((req, res)=>{ 
     switch(req.method){
         case "POST":{
             if (req.url === '/new') {
