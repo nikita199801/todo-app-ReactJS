@@ -13,9 +13,9 @@ export default class Dashboard extends React.Component{
             )
         })
         return (
-            <div className="workplace">
+            <ul className="workplace">
                 {todos}
-            </div>
+            </ul>
         )
         
     }

@@ -1,7 +1,8 @@
 import React from "react";
 import "../styles/Dialog.css"
-const http = require('http')
-const axios = require('axios')
+import {Button, IconButton, MenuItem, FormControl, InputLabel, Select, ButtonGroup, Fab, NativeSelect, TextField} from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
+import SaveIcon from '@material-ui/icons/Save';
 
 const colors = [
   {
@@ -62,16 +63,29 @@ export default class Dialog extends React.Component{
       <div className="dialog">
         <div className="top-section">
           <div className="header">
-            <div>{this.props.thisTodo.title}</div>
-            <button onClick={this.props.onClose}>exit</button>
+            <h2>Edit ToDo</h2>
+            <Fab 
+            color="secondary" 
+            size="small" 
+            onClick={()=>{
+              this.props.onClose()
+            }}>
+                <CloseIcon />
+            </Fab>
           </div>
         </div>
         <div className="mid-section">
-          <input className ="edit-input" onChange={this.inputHandler}></input>
+          <TextField autoFocus defaultValue={this.props.thisTodo.title} style ={{width: 350}} label="Edit here" onChange={this.inputHandler}></TextField>
         </div>
         <div className="bottom-section">
 
-          <button onClick = {()=>{
+          <Button
+          variant="contained"
+          color="primary"
+          size="medium"
+          style = {{marginRight: 20, marginTop: 10}}
+          startIcon={<SaveIcon />}
+          onClick = {()=>{
             if (this.state.inputData !== ""){
               this.props.onEditHandler(this.props.thisTodo, this.state.inputData, this.state.color)
               this.props.updateContent()
@@ -82,11 +96,13 @@ export default class Dialog extends React.Component{
               // MODIFY LATER 
               this.props.onClose()
             }
-            }}>Save Changes</button>
+            }}
+          >{"Save"}</Button>
 
-          <select >
-            {options}
-          </select>
+        <FormControl>
+          <InputLabel>Color</InputLabel>
+          <NativeSelect>{options}</NativeSelect>
+        </FormControl>
         </div>
       </div>
     );

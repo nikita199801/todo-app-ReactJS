@@ -4,7 +4,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 import "../styles/Plate.css"
 import Dialog from "./Dialog"
 import "../styles/Dashboard.css"
-import { colors } from "@material-ui/core";
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+import {IconButton, ButtonGroup} from '@material-ui/core'
 const axios = require('axios')
 
 
@@ -26,14 +28,10 @@ export default function Plate(props){
       }
 
       function editTodo(todoToSet, newData, color){
-        todoToSet.completed = !isFinished
         if (newData !== ""){
             todoToSet.newTitle = newData
         }
         todoToSet.color = color
-        // if (color){
-        //     todoToSet.color = newData
-        // }
         
         axios({
             method: 'post',
@@ -47,7 +45,7 @@ export default function Plate(props){
       }
 
     return(
-        <div className="plate">
+        <li className="plate">
             {(!isFinished) ? 
             <CSSTransition 
             in={isFinished} 
@@ -58,22 +56,34 @@ export default function Plate(props){
             : <span className={props.todoData.color+" plate-text-content plate-text-content-done"}>{props.todoData.title}</span>}
 
             <span className="control-section">
-                <Checkbox 
+                <Checkbox style={{margin: 5}}
                 defaultChecked = {props.todoData.completed} 
                 onChange={()=>{
                     onFinishHandler(!isFinished)
-                    editTodo(props.todoData, props.todoData.title, props.todoData.color)}
+                    console.log(isFinished)
+                    let newTodo = props.todoData
+                    newTodo.completed = !isFinished
+                    editTodo(newTodo, props.todoData.title, props.todoData.color)}
                     }/>
+                    
+                    <ButtonGroup variant="contained" color="secondary">
+                        <IconButton
+                        style={(isFinished) ? { color: "#f5186d" } : { color: "grey" }} 
+                        disabled = {!isFinished} 
+                        onClick = {() => {
+                            deleteTodo(props.todoData)
+                            }}>
+                            <DeleteIcon />
+                        </IconButton>
 
-                <button 
-                disabled = {!isFinished} 
-                onClick = {() => {
-                    deleteTodo(props.todoData)
-                    }}>Delete</button>
-
-
-                <button 
-                onClick={()=>{onDialogShow(true)}}>Edit</button>
+                        <IconButton 
+                        style={{ color: "#f5186d" }}
+                        onClick={()=>{
+                            onDialogShow(true)
+                        }}>
+                            <EditIcon />
+                        </IconButton>
+                    </ButtonGroup>
 
                 {(isShow) ? <Dialog
                 onEditHandler = {editTodo} 
@@ -82,6 +92,6 @@ export default function Plate(props){
                 onClose={()=> {onDialogShow(false)
                 }}/> : null}
             </span>
-        </div>       
+        </li>       
     )
 }

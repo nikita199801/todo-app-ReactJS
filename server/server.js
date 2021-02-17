@@ -12,7 +12,11 @@ http.createServer((req, res)=>{
                     res.setHeader("Access-Control-Allow-Origin", '*')
                     let newTodo = JSON.parse(data)
                     todos = JSON.parse(fs.readFileSync('../src/todos.json'))
-                    newTodo.id = newTodo.id = todos[todos.length-1].id+1
+                    if (todos.length === 0){
+                        newTodo.id = 0
+                    }else {
+                        newTodo.id = todos[todos.length-1].id+1
+                    }
                     todos.push(newTodo)
                     fs.writeFile('../src/todos.json', JSON.stringify(todos, null, 2), () =>{
                     })

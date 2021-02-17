@@ -1,26 +1,8 @@
 [
   {
-    "id": 1,
-    "title": "delectus aut autem",
+    "id": 0,
+    "title": "sadassad",
     "completed": false,
-    "color": "white"
-  },
-  {
-    "id": 2,
-    "title": "quis ut nam facilis et officia qui",
-    "completed": false,
-    "color": "white"
-  },
-  {
-    "id": 3,
-    "title": "fugiat veniam minus",
-    "completed": false,
-    "color": "white"
-  },
-  {
-    "id": 4,
-    "title": "Todo",
-    "completed": false,
-    "color": "green"
+    "color": "red"
   }
 ]
