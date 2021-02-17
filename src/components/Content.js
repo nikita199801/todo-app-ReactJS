@@ -2,7 +2,6 @@ import React from "react"
 import Head from "./Head"
 import Dashboard from "./Dashboard"
 import "../styles/Content.css"
-const http = require('http')
 const axios = require('axios')
 
 class Content extends React.Component {
@@ -10,7 +9,6 @@ class Content extends React.Component {
         super(props)
         this.state = ({
             data : []
-            // data: require("../todos.json")
         })
     } 
     

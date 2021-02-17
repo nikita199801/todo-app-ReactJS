@@ -2,16 +2,25 @@
   {
     "id": 1,
     "title": "delectus aut autem",
-    "completed": false
+    "completed": false,
+    "color": "white"
   },
   {
     "id": 2,
     "title": "quis ut nam facilis et officia qui",
-    "completed": false
+    "completed": false,
+    "color": "white"
   },
   {
     "id": 3,
     "title": "fugiat veniam minus",
-    "completed": false
+    "completed": false,
+    "color": "white"
+  },
+  {
+    "id": 4,
+    "title": "sss",
+    "completed": true,
+    "color": "white"
   }
 ]

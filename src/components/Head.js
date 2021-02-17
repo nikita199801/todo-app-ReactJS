@@ -28,7 +28,8 @@ class Head extends React.Component {
             let newTodo = {
                 id: '',
                 title: data,
-                completed: false
+                completed: false,
+                color: 'white'
             }
             axios({
                 method: 'post',

@@ -4,6 +4,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import "../styles/Plate.css"
 import Dialog from "./Dialog"
 import "../styles/Dashboard.css"
+import { colors } from "@material-ui/core";
 const axios = require('axios')
 
 
@@ -24,8 +25,16 @@ export default function Plate(props){
         .then(() => props.updateContent())
       }
 
-      function setTaskStatus(todoToSet){
+      function editTodo(todoToSet, newData, color){
         todoToSet.completed = isFinished
+        if (newData !== ""){
+            todoToSet.newTitle = newData
+        }
+        todoToSet.color = color
+        // if (color){
+        //     todoToSet.color = newData
+        // }
+        
         axios({
             method: 'post',
             url :'http://localhost:5000/edit',
@@ -36,6 +45,20 @@ export default function Plate(props){
             }
         })
       }
+
+    //   saveChanges = (dataToEdit, newData) => {
+    //     dataToEdit.newTitle = newData
+    //     axios({
+    //       method: 'post',
+    //       url :'http://localhost:5000/edit',
+    //       data: dataToEdit,
+    //       headers: {
+    //           'Content-Type': 'application/x-www-form-urlencoded',
+    //           'Content-Length': Buffer.byteLength(dataToEdit)
+    //       }
+    //   })
+    //   .then(res => console.log(res))
+    //   }
 
     return(
         <div className="plate">
@@ -53,7 +76,7 @@ export default function Plate(props){
                 defaultChecked = {props.isDone} 
                 onChange={()=>{
                     onFinishHandler(!isFinished)
-                    setTaskStatus(props.todoData)}
+                    editTodo(props.todoData, props.todoData.title, props.todoData.color)}
                     }/>
 
                 <button 
@@ -66,7 +89,8 @@ export default function Plate(props){
                 <button 
                 onClick={()=>{onDialogShow(true)}}>Edit</button>
 
-                {(isShow) ? <Dialog 
+                {(isShow) ? <Dialog
+                onEditHandler = {editTodo} 
                 thisTodo = {props.todoData}
                 updateContent = {props.updateContent} 
                 onClose={()=> {onDialogShow(false)

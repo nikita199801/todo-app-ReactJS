@@ -2,11 +2,31 @@ import React from "react";
 import "../styles/Dialog.css"
 const http = require('http')
 const axios = require('axios')
+
+const colors = [
+  {
+    id: 0,
+    name: 'red' 
+  },
+  {
+    id: 1,
+    name:'green'
+  },
+  {
+    id: 2,
+    name:'blue'
+  },
+  {
+    id: 3,
+    name:'white'
+  }
+]
 export default class Dialog extends React.Component{
   constructor(props){
     super(props)
     this.state = ({
-      inputData: ""
+      inputData: "",
+      color:this.props.thisTodo.color
     })
   }
 
@@ -14,25 +34,30 @@ export default class Dialog extends React.Component{
     this.setState({
         inputData: event.target.value
     })
-}
-
-  saveChanges = (dataToEdit, newData) => {
-    dataToEdit.newTitle = newData
-
-    axios({
-      method: 'post',
-      url :'http://localhost:5000/edit',
-      data: dataToEdit,
-      headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Content-Length': Buffer.byteLength(dataToEdit)
-      }
-  })
-  .then(res => console.log(res))
-  return false
   }
 
+  onColorChange = (color) =>{
+    this.setState({
+      color:color
+    })
+  }
+
+
+
   render(){
+    const options = colors.map(color => {
+      let colorName = color.name.charAt(0).toUpperCase()+color.name.slice(1)
+      if(this.props.thisTodo.color === color.name){
+        return(
+          <option selected onClick = {()=>{this.setState({color:color.name})}}>{colorName}</option>
+        )    
+      } else {
+        return(
+          <option onClick = {()=>{this.setState({color:color.name})}}>{colorName}</option>
+        )  
+      }    
+   })
+
     return (
       <div className="dialog">
         <div className="top-section">
@@ -45,19 +70,22 @@ export default class Dialog extends React.Component{
           <input className ="edit-input" onChange={this.inputHandler}></input>
         </div>
         <div className="bottom-section">
+
           <button onClick = {()=>{
             if (this.state.inputData !== ""){
-              this.saveChanges(this.props.thisTodo, this.state.inputData)
+              this.props.onEditHandler(this.props.thisTodo, this.state.inputData, this.state.color)
               this.props.updateContent()
               this.props.onClose()
             } else{
+              this.props.onEditHandler(this.props.thisTodo, this.props.thisTodo.title, this.state.color)
+              this.props.updateContent()
               // MODIFY LATER 
               this.props.onClose()
             }
             }}>Save Changes</button>
-          <select>
-            <option>Red</option>
-            <option>Green</option>
+
+          <select >
+            {options}
           </select>
         </div>
       </div>

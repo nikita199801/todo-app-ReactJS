@@ -41,3 +41,13 @@
 	text-decoration: line-through;
 	transition: text-decoration 200ms;
 }
+
+.red {
+	background-color: red;
+}
+.green {
+	background-color: green;
+}
+.blue {
+	background-color: blue;
+}
