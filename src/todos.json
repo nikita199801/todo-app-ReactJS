@@ -19,8 +19,8 @@
   },
   {
     "id": 4,
-    "title": "sss",
-    "completed": true,
-    "color": "white"
+    "title": "Todo",
+    "completed": false,
+    "color": "green"
   }
 ]

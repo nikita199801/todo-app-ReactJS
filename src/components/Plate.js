@@ -9,7 +9,7 @@ const axios = require('axios')
 
 
 export default function Plate(props){
-    const [isFinished, onFinishHandler] = useState(!props.isDone)
+    const [isFinished, onFinishHandler] = useState(props.todoData.completed)
     const [isShow, onDialogShow] = useState(false)
 
     function deleteTodo(dataToDelete){
@@ -26,7 +26,7 @@ export default function Plate(props){
       }
 
       function editTodo(todoToSet, newData, color){
-        todoToSet.completed = isFinished
+        todoToSet.completed = !isFinished
         if (newData !== ""){
             todoToSet.newTitle = newData
         }
@@ -46,41 +46,27 @@ export default function Plate(props){
         })
       }
 
-    //   saveChanges = (dataToEdit, newData) => {
-    //     dataToEdit.newTitle = newData
-    //     axios({
-    //       method: 'post',
-    //       url :'http://localhost:5000/edit',
-    //       data: dataToEdit,
-    //       headers: {
-    //           'Content-Type': 'application/x-www-form-urlencoded',
-    //           'Content-Length': Buffer.byteLength(dataToEdit)
-    //       }
-    //   })
-    //   .then(res => console.log(res))
-    //   }
-
     return(
         <div className="plate">
-            {(isFinished) ? 
+            {(!isFinished) ? 
             <CSSTransition 
             in={isFinished} 
             timeout={200} 
             classNames="text-transition">
-                <span className="plate-text-content">{props.todoData.title}</span>
+                <span className={props.todoData.color+" plate-text-content"}>{props.todoData.title}</span>
             </CSSTransition>
-            : <span className="plate-text-content plate-text-content-done">{props.todoData.title}</span>}
+            : <span className={props.todoData.color+" plate-text-content plate-text-content-done"}>{props.todoData.title}</span>}
 
             <span className="control-section">
                 <Checkbox 
-                defaultChecked = {props.isDone} 
+                defaultChecked = {props.todoData.completed} 
                 onChange={()=>{
                     onFinishHandler(!isFinished)
                     editTodo(props.todoData, props.todoData.title, props.todoData.color)}
                     }/>
 
                 <button 
-                disabled = {isFinished} 
+                disabled = {!isFinished} 
                 onClick = {() => {
                     deleteTodo(props.todoData)
                     }}>Delete</button>

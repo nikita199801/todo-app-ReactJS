@@ -4,16 +4,12 @@ import Checkbox from '@material-ui/core/Checkbox';
 export default class Dashboard extends React.Component{ 
     constructor(props){
         super(props)
-        // this.state = ({
-        //     isDialogShow: false,
-        //     isShow: false
-        // })
     }
 
     render(){
         const todos =this.props.todos.map((todo) =>{
             return (
-                <Plate todoData={todo} isDone={todo.completed} key={todo.id} openDialog = {this.onDialogShow} updateContent={this.props.updateContent}/>
+                <Plate todoData={todo} key={todo.id} updateContent={this.props.updateContent}/>
             )
         })
         return (

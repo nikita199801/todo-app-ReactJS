@@ -23,7 +23,6 @@ http.createServer((req, res)=>{
             if (req.url === '/edit') {
                 req.on('data', (data)=>{
                     dataToEdit = JSON.parse(data)
-                    console.log(dataToEdit)
                     res.statusCode = 200
                     res.statusMessage = 'DATA_RECIVED'
                     res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")

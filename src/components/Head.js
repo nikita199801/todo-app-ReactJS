@@ -12,7 +12,6 @@ class Head extends React.Component {
     constructor(props){
         super(props)
         this.state=({
-            isVisble: false,
             todoString: ""
         })
     }
@@ -46,7 +45,7 @@ class Head extends React.Component {
     render(){
         return(
             <form className="head">
-                <Input isVisble={this.state.isVisble} changeHandler = {this.inputHandler}/>
+                <Input changeHandler = {this.inputHandler}/>
                 <MyButton action={()=>{this.addNewTodo(this.state.todoString)}} updateContent = {this.props.updateContent}/>
             </form>
         )
