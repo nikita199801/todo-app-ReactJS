@@ -4,5 +4,11 @@
     "title": "sadassad",
     "completed": false,
     "color": "red"
+  },
+  {
+    "id": 3,
+    "title": "34534534",
+    "completed": false,
+    "color": "white"
   }
 ]

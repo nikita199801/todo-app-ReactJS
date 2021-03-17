@@ -32,7 +32,7 @@ class Head extends React.Component {
             }
             axios({
                 method: 'post',
-                url :'http://localhost:5000/new',
+                url :'http://localhost:5000/todo?action=create',
                 data: newTodo,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',

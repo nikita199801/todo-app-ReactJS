@@ -1,10 +1,11 @@
 const http = require('http')
 const fs = require('fs')
-
-http.createServer((req, res)=>{ 
+const url = require('url')
+http.createServer((req, res)=>{
+    let uri = url.parse(req.url, true) 
     switch(req.method){
         case "POST":{
-            if (req.url === '/new') {
+            if (uri.query.action === 'create') {
                 let toSave=[]
                 req.on('data', (data)=>{
                     res.statusCode = 200
@@ -24,7 +25,7 @@ http.createServer((req, res)=>{
                 })
             }
  
-            if (req.url === '/edit') {
+            if (uri.query.action === 'update') {
                 req.on('data', (data)=>{
                     dataToEdit = JSON.parse(data)
                     res.statusCode = 200
@@ -46,7 +47,7 @@ http.createServer((req, res)=>{
                 })
             }
 
-            if(req.url === '/delete') {
+            if(uri.query.action === 'delete') {
                 let toSave=[]
                 req.on('data', (data)=>{
                     dataToDelete = JSON.parse(data)
@@ -66,14 +67,14 @@ http.createServer((req, res)=>{
             }
         }
         case "GET":{
-            if (req.url === '/') {
+            if (uri.query.action === 'read') {
                 res.statusCode = 200
                 res.statusMessage = 'DATA_SEND'
                 res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
                 fs.readFile('../src/todos.json', (err, data)=>{
                     res.write(JSON.stringify(JSON.parse(data)))
                     res.end()
-                })  
+                })
             }
         }
     }

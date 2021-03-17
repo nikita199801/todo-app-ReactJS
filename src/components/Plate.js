@@ -17,7 +17,7 @@ export default function Plate(props){
     function deleteTodo(dataToDelete){
         axios({
             method: 'post',
-            url :'http://localhost:5000/delete',
+            url :'http://localhost:5000/todo?action=delete',
             data: dataToDelete,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -35,7 +35,7 @@ export default function Plate(props){
         
         axios({
             method: 'post',
-            url :'http://localhost:5000/edit',
+            url :'http://localhost:5000/todo?action=update',
             data: todoToSet,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

@@ -13,7 +13,7 @@ class Content extends React.Component {
     } 
     
     update = () =>{
-        axios.get('http://localhost:5000')
+        axios.get('http://localhost:5000/todo?action=read')
         .then(res => {
             this.forceUpdate(()=>{
                 console.log()
@@ -25,7 +25,7 @@ class Content extends React.Component {
     }
 
     componentWillMount(){
-        axios.get('http://localhost:5000')
+        axios.get('http://localhost:5000/todo?action=read')
         .then(res => {
             this.setState({
                 data: res.data
